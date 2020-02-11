@@ -5,10 +5,10 @@ import scipy.special
 class NeuralNet:
     def __init__(self, input_nodes, output_nodes, nodes_arr, learning_rate):
         """
-        :param input_nodes:
-        :param output_nodes:
-        :param nodes_arr:
-        :param learning_rate:
+        :param input_nodes: amount of nodes of input layer
+        :param output_nodes: amount of nodes of output layer
+        :param nodes_arr: list of nodes of hidden layers
+        :param learning_rate: coefficient of learning
         """
         self.input_nodes = input_nodes
         self.output_nodes = output_nodes
@@ -38,8 +38,8 @@ class NeuralNet:
         This function calculates errors, based on target value, for all layers.
         Using update_weights function all weights are being updated.
 
-        :param input_list:
-        :param target_list:
+        :param input_list: list of inputs
+        :param target_list: list of expected values
         """
         # converting list into a numpy array
         # .T is for transpose
@@ -66,9 +66,10 @@ class NeuralNet:
 
         self.outputs.append(first_hidden_outputs)
 
+        # last is not included
         for index in range(1, len(self.weights) - 1):
             weights_arr = self.weights[index]
-            prev_outputs = self.outputs[index - 1]
+            prev_outputs = self.outputs[index]
 
             curr_inputs = numpy.dot(weights_arr, prev_outputs)
             curr_outputs = self.activation(curr_inputs)
@@ -98,8 +99,8 @@ class NeuralNet:
 
         :param target_arr: numpy array of expected values
         """
-        self.errors.insert(0, target_arr - self.outputs[-1])
-        for index in range(len(self.outputs) - 2, 1, -1):
+        self.errors.append(target_arr - self.outputs[-1])
+        for index in range(len(self.outputs) - 2, -1, -1):
             self.errors.insert(0, numpy.dot(self.weights[index].T, self.errors[0]))
 
     def update_weights(self, input_arr):
