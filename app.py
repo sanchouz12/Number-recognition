@@ -2,7 +2,17 @@ import numpy
 
 from neural_net import NeuralNet
 
-net = NeuralNet(784, 10, 100, 0.2)
+layers = int(input("How many hidden layers will the neural net contain?\n"))
+neurons = []
+
+for index in range(layers):
+    neurons.append(int(input(
+        "How many neurons will be in {} layer?\n".format(index + 1)
+    )))
+
+coefficient = float(input("What's the training coefficient?\n"))
+
+net = NeuralNet(784, 10, neurons, coefficient)
 
 with open("mnist_dataset/mnist_test.csv", "r") as file:
     test_data = file.readlines()
@@ -10,7 +20,7 @@ with open("mnist_dataset/mnist_test.csv", "r") as file:
 with open("mnist_dataset/mnist_train.csv", "r") as file:
     train_data = file.readlines()
 
-epochs = 5
+epochs = int(input("How many epochs of training the net should be?\n"))
 
 # training the net
 for x in range(epochs):
