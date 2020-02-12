@@ -3,18 +3,14 @@ Number recognition with Pyhton
 
 Description
 -----------
-This is a neural net, that can recognise hand-written numbers.
+This is a neural net, that can recognise hand-written numbers. To train uses MNIST dataset.
 
 Features
 --------
 1. Large dataset comes with working neural net (unpack archive into the same folder).
 2. Precision of recognition is more than 95%.
-
-Planned features
-----------------
-1. Add menu, where parameters of neural net can be changed.
-2. Add saving and loading most effective model.
-3. **(Not sure)** Add ability to test the net with your own written numbers (either downloaded from image or written right into the app).
+3. You can change parameters of the net: amount of hidden layers and neurons in it, learning coefficient
+4. You can save and load main parameters and weights from file.
 
 User guide
 ----------
