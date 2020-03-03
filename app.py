@@ -129,7 +129,7 @@ class App:
                 file.writelines("\n")
 
         with open("params.txt", "a") as file:
-            file.writelines(f"{self.neurons}")
+            file.writelines(f"{self.neurons}\n")
             file.writelines(f"{self.coefficient}")
 
 
